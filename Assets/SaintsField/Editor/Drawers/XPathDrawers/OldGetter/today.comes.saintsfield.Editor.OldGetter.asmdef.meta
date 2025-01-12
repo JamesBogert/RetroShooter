@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a37b226d83d79f54ebbe19a632ab05ad
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 269741
+  packageName: Saints Field
+  packageVersion: 3.14.0
+  assetPath: Assets/SaintsField/Editor/Drawers/XPathDrawers/OldGetter/today.comes.saintsfield.Editor.OldGetter.asmdef
+  uploadId: 721654

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91ed7bc07b7b7094abe01603de051c09, type: 3}
+  m_Name: SFXManagerSO
+  m_EditorClassIdentifier: 
+  pitchRange: 0.1
+  sounds:
+  - clip: {fileID: 8300000, guid: 11ede18cef57583419e18261e63c8b63, type: 3}
+    volume: 0.425
+    pitch: 1
+    soundName: RevolverShoot
+    source: {fileID: 0}
+  source: {fileID: 6662039488842936416, guid: 9b0ffce50eaf4c2449efd442827515d1, type: 3}

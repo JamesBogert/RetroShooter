@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545f4b14ba8d3524c8198c9e96c0161f, type: 3}
+  m_Name: AK47
+  m_EditorClassIdentifier: 
+  type: 2
+  gunName: AK47
+  modelPrefab: {fileID: 1289099769566646337, guid: bebfe600719a8ac44b20b1950f44b101, type: 3}
+  spawnPoint: {x: 0.361, y: -0.204, z: 0.463}
+  spawnRotation: {x: 0, y: 0, z: 0}
+  animatorFireName: 
+  DamageConfig: {fileID: 11400000, guid: 1d68bda54d4867f488fa81afa5ea8a6f, type: 2}
+  ShootConfig: {fileID: 11400000, guid: 09ee811bc28101049bfef2987be70d66, type: 2}
+  TrailConfig: {fileID: 11400000, guid: 67733c6e8b06bec4cbc0a7a4d3cae83a, type: 2}

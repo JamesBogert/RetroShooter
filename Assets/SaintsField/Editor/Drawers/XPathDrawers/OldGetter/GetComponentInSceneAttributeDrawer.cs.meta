@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: c9061b68102347da827141708a4c4875
+timeCreated: 1702290878
+AssetOrigin:
+  serializedVersion: 1
+  productId: 269741
+  packageName: Saints Field
+  packageVersion: 3.14.0
+  assetPath: Assets/SaintsField/Editor/Drawers/XPathDrawers/OldGetter/GetComponentInSceneAttributeDrawer.cs
+  uploadId: 721654

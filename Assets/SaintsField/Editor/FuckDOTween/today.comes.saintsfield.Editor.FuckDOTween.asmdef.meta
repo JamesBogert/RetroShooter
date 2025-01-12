@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 61c9190d712b8b447a0495659609fecf
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 269741
+  packageName: Saints Field
+  packageVersion: 3.14.0
+  assetPath: Assets/SaintsField/Editor/FuckDOTween/today.comes.saintsfield.Editor.FuckDOTween.asmdef
+  uploadId: 721654
