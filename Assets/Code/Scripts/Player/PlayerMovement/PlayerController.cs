@@ -1,97 +1,122 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UIElements.Experimental;
+
+public enum PlayerState
+{ 
+    Standing,
+    Grappling,
+    Dashing,
+}
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("BasicMove")]
-    [SerializeField] private float moveSpeed = 20f;
-    [SerializeField] private float acceleration = 50f;
-    [SerializeField] private float inAirAcceleration = 30f;
     [Header("Grounded&Jump")]
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight = 3f;
     [SerializeField] private float groundCheckDistance = 0.4f;
+    [SerializeField] private float ceilingCheckDistance = 0.1f;
+    [SerializeField] private float ceilingCheckCooldown = 0.2f;
+    float ceilingTime;
     [SerializeField] private LayerMask whatIsGround;
-    private bool grounded;
-    [Space]
-    [Header("Dash")]
-    [SerializeField] private float dashSpeed;
-    [SerializeField] private float dashTime;
-    private bool dashing;
+    [HideInInspector] public bool grounded { get; private set; }
+    [HideInInspector] public bool ceilingHit { get; private set; }
     [Space]
     [Header("References")]
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform ceilingCheck;
     [SerializeField] private CharacterController controller;
     [SerializeField] private PlayerInfoSO playerInfo;
+    private GrappleHook grappleHook;
+    private PlayerMove playerMove;
+    private PlayerDash playerDash;
+    //state stuff
+    [HideInInspector] public PlayerState activeState;
 
-    private Vector3 velocity = Vector3.zero;
-    private Controls input;
-    private Vector2 moveInput;
-    private bool isJump;
-    private bool jumpHeld;
-    private bool isDash;
+    //
+    [HideInInspector] public Vector3 Velocity;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        input = new Controls();
-        input.Enable();
-        dashing = false;
+        grappleHook = GetComponentInChildren<GrappleHook>();
+        playerDash = GetComponent<PlayerDash>();
+        playerMove = GetComponent<PlayerMove>();
     }
+
+    private void Start()
+    {
+        Velocity = Vector3.zero;
+        activeState = PlayerState.Standing;
+    }
+    
 
     // Update is called once per frame
     void Update()
     {
-        GetInput();
-
         grounded = Physics.Raycast(groundCheck.position, Vector3.down, groundCheckDistance, whatIsGround);
 
-        Move();
-        CallDash();
-        Gravity();
-        Jump();
-        controller.Move(velocity * Time.deltaTime);
+        if (ceilingTime > ceilingCheckCooldown)
+            ceilingHit = Physics.Raycast(ceilingCheck.position, Vector3.up, ceilingCheckDistance, whatIsGround);
+            Debug.Log(ceilingHit);
 
-        playerInfo.playerVelocity = velocity;
+        if (activeState == PlayerState.Standing)
+        {
+            StandingStateLogic();
+        }
+        else if (activeState == PlayerState.Grappling)
+        {
+            GrapplingStateLogic();
+        }
+        else if (activeState == PlayerState.Dashing)
+        {
+            DashingStateLogic();
+        }
+
+        ceilingTime += Time.deltaTime;
+
+        controller.Move(Velocity * Time.deltaTime);
+    }
+
+    private void LateUpdate()
+    {
+        playerInfo.playerVelocity = Velocity;
         playerInfo.playerPosition = transform.position;
     }
 
-    void GetInput()
+    void StandingStateLogic()
     {
-        moveInput = input.Player.Move.ReadValue<Vector2>();
-        isJump = input.Player.Jump.WasPressedThisFrame();
-        jumpHeld = input.Player.Jump.IsPressed();
-        isDash = input.Player.Dash.WasPressedThisFrame();
+        if (InputManager.instance.IsDash)
+        {
+            playerDash.CallDash();
+        }
+        if (InputManager.instance.IsGrapple)
+        { 
+            grappleHook.AttemptGrapple();
+        }
+
+        playerMove.Move();
+        Gravity();
+        Jump();
+        OnCeilingCollision();
     }
 
-    void Move()
+    void GrapplingStateLogic()
     {
-        Vector3 direction = transform.forward * moveInput.y + transform.right * moveInput.x;
-        Vector3 target = direction * moveSpeed;
-        if (grounded)
-        {
-            Vector3 velocityXZ = new Vector3(velocity.x, 0f, velocity.z);
-            velocityXZ = Vector3.Lerp(velocityXZ, target, acceleration * Time.deltaTime);
-            velocity = new Vector3(velocityXZ.x, velocity.y, velocityXZ.z);
-        }
-        else
-        {
-            if (direction != Vector3.zero)
-            {
-                Vector3 velocityXZ = new Vector3(velocity.x, 0f, velocity.z);
-                velocityXZ = Vector3.Lerp(velocityXZ, target, inAirAcceleration * Time.deltaTime);
-                velocity = new Vector3(velocityXZ.x, velocity.y, velocityXZ.z);
-            }
-        }
+        grappleHook.Grappling();
+        OnCeilingCollision();
+    }
+
+    void DashingStateLogic()
+    { 
+    
     }
 
     void Jump()
     {
-        if (grounded && isJump)
+        if (grounded && InputManager.instance.IsJump)
         {
-            velocity.y = Mathf.Sqrt(-2 * gravity * jumpHeight);
+            Velocity.y = Mathf.Sqrt(-2 * gravity * jumpHeight);
         }
     }
 
@@ -99,34 +124,21 @@ public class PlayerController : MonoBehaviour
     {
         if (!grounded)
         {
-            velocity.y += gravity * Time.deltaTime;
+            Velocity.y += gravity * Time.deltaTime;
         }
-        else if (grounded && velocity.y < 0f)
+        else if (grounded && Velocity.y < 0f)
         {
-            velocity.y = -2f;
+            Velocity.y = -2f;
         }
     }
 
-    void CallDash()
+    void OnCeilingCollision()
     {
-        if (isDash && !dashing)
+        if (ceilingHit)
         {
-            dashing = true;
-            StartCoroutine(Dash());
+            Velocity.y = 0;
+            ceilingTime = 0f;
+            ceilingHit = false;
         }
-    }
-
-    private IEnumerator Dash()
-    {
-        float time = 0f;
-        Vector3 moveDirection = transform.forward * moveInput.y + transform.right * moveInput.x;
-        if (moveDirection == Vector3.zero) moveDirection = transform.forward;
-        while (time < dashTime)
-        {
-            controller.Move(moveDirection * dashSpeed * Time.deltaTime);
-            time += Time.deltaTime;
-            yield return null;
-        }
-        dashing = false;
     }
 }

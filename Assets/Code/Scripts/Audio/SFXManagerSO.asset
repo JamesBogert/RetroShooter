@@ -13,10 +13,28 @@ MonoBehaviour:
   m_Name: SFXManagerSO
   m_EditorClassIdentifier: 
   pitchRange: 0.1
-  sounds:
-  - clip: {fileID: 8300000, guid: 11ede18cef57583419e18261e63c8b63, type: 3}
-    volume: 0.425
-    pitch: 1
-    soundName: RevolverShoot
+  gunSounds:
+  - clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    soundName: 
+    source: {fileID: 0}
+  enemySounds:
+  - clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    soundName: 
+    source: {fileID: 0}
+  ambienceSounds:
+  - clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    soundName: 
+    source: {fileID: 0}
+  miscSounds:
+  - clip: {fileID: 0}
+    volume: 0
+    pitch: 0
+    soundName: 
     source: {fileID: 0}
   source: {fileID: 6662039488842936416, guid: 9b0ffce50eaf4c2449efd442827515d1, type: 3}

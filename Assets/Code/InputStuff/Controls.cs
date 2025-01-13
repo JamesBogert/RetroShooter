@@ -46,7 +46,16 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Fire"",
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""35727fa9-1827-4b07-8732-25fb0fa30238"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fire1"",
                     ""type"": ""Button"",
                     ""id"": ""e9ee40fe-d668-4305-a545-29f159911a12"",
                     ""expectedControlType"": """",
@@ -55,9 +64,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Jump"",
+                    ""name"": ""Fire2"",
                     ""type"": ""Button"",
-                    ""id"": ""35727fa9-1827-4b07-8732-25fb0fa30238"",
+                    ""id"": ""d239bb25-ef6c-4762-8e64-b4eecdc9242e"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -89,6 +98,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""6f2b4bb7-c727-4868-a19c-b2a07bf7d16f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ScrollWheel"",
+                    ""type"": ""Value"",
+                    ""id"": ""e22db0c0-41bc-4a3b-becc-013973015479"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -264,7 +291,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Fire1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -275,7 +302,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Fire1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -286,7 +313,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Touch"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Fire1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -297,7 +324,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Fire1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -308,7 +335,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""XR"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Fire1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -353,6 +380,39 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Grapple"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""08002f8d-5a48-4bfb-9ee1-79842deb8ee6"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db111a26-12ab-4e2c-a375-ca5634f7ecaf"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1af59701-969c-4b2c-9965-7ffe2dcc79a1"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ScrollWheel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -942,11 +1002,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-        m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Fire1 = m_Player.FindAction("Fire1", throwIfNotFound: true);
+        m_Player_Fire2 = m_Player.FindAction("Fire2", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Slide = m_Player.FindAction("Slide", throwIfNotFound: true);
         m_Player_Grapple = m_Player.FindAction("Grapple", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_ScrollWheel = m_Player.FindAction("ScrollWheel", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1028,22 +1091,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
-    private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Fire1;
+    private readonly InputAction m_Player_Fire2;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Slide;
     private readonly InputAction m_Player_Grapple;
+    private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_ScrollWheel;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
-        public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Fire1 => m_Wrapper.m_Player_Fire1;
+        public InputAction @Fire2 => m_Wrapper.m_Player_Fire2;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Slide => m_Wrapper.m_Player_Slide;
         public InputAction @Grapple => m_Wrapper.m_Player_Grapple;
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @ScrollWheel => m_Wrapper.m_Player_ScrollWheel;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1059,12 +1128,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
-            @Fire.started += instance.OnFire;
-            @Fire.performed += instance.OnFire;
-            @Fire.canceled += instance.OnFire;
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Fire1.started += instance.OnFire1;
+            @Fire1.performed += instance.OnFire1;
+            @Fire1.canceled += instance.OnFire1;
+            @Fire2.started += instance.OnFire2;
+            @Fire2.performed += instance.OnFire2;
+            @Fire2.canceled += instance.OnFire2;
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
@@ -1074,6 +1146,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Grapple.started += instance.OnGrapple;
             @Grapple.performed += instance.OnGrapple;
             @Grapple.canceled += instance.OnGrapple;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
+            @ScrollWheel.started += instance.OnScrollWheel;
+            @ScrollWheel.performed += instance.OnScrollWheel;
+            @ScrollWheel.canceled += instance.OnScrollWheel;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1084,12 +1162,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
-            @Fire.started -= instance.OnFire;
-            @Fire.performed -= instance.OnFire;
-            @Fire.canceled -= instance.OnFire;
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Fire1.started -= instance.OnFire1;
+            @Fire1.performed -= instance.OnFire1;
+            @Fire1.canceled -= instance.OnFire1;
+            @Fire2.started -= instance.OnFire2;
+            @Fire2.performed -= instance.OnFire2;
+            @Fire2.canceled -= instance.OnFire2;
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
@@ -1099,6 +1180,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Grapple.started -= instance.OnGrapple;
             @Grapple.performed -= instance.OnGrapple;
             @Grapple.canceled -= instance.OnGrapple;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
+            @ScrollWheel.started -= instance.OnScrollWheel;
+            @ScrollWheel.performed -= instance.OnScrollWheel;
+            @ScrollWheel.canceled -= instance.OnScrollWheel;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1283,11 +1370,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
-        void OnFire(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnFire1(InputAction.CallbackContext context);
+        void OnFire2(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnSlide(InputAction.CallbackContext context);
         void OnGrapple(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
+        void OnScrollWheel(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
