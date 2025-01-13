@@ -27,6 +27,10 @@ public class InputManager : ScriptableObject
 
     public float ScrollWheelInput;
 
+    public bool IsPause;
+
+    public bool IsReload;
+
     public static Controls input;
 
     private void OnEnable()
@@ -37,7 +41,6 @@ public class InputManager : ScriptableObject
         }
 
         input = new Controls();
-        input.Enable();
     }
 
     public void UpdateInput()
@@ -62,10 +65,25 @@ public class InputManager : ScriptableObject
         Fire2Held = input.Player.Fire2.IsPressed();
 
         ScrollWheelInput = input.Player.ScrollWheel.ReadValue<float>();
+
+        IsPause = input.Player.Pause.WasPressedThisFrame();
+
+        IsReload = input.Player.Reload.WasPressedThisFrame();
     }
 
-    private void OnDisable()
+
+    public void DisableInput()
     {
         input.Disable();
+    }
+
+    public void EnableInput()
+    {
+        input.Enable();
+    }
+
+    private void OnDestroy()
+    {
+        input.Dispose();
     }
 }

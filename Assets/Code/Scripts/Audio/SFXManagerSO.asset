@@ -12,29 +12,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91ed7bc07b7b7094abe01603de051c09, type: 3}
   m_Name: SFXManagerSO
   m_EditorClassIdentifier: 
-  pitchRange: 0.1
+  pitchRange: 0.03
   gunSounds:
-  - clip: {fileID: 0}
-    volume: 0
-    pitch: 0
-    soundName: 
+  - clip: {fileID: 8300000, guid: b789fe3fd2b49bb4c83b163f0e52c3fc, type: 3}
+    volume: 0.82
+    pitch: 1
+    soundName: RevolverShoot
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: c26b904e5d0f50b45a1f7e1cfe7f981d, type: 3}
+    volume: 0.7
+    pitch: 1
+    soundName: Headshot
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: af7460f9bee9e0f4ab8702542e944376, type: 3}
+    volume: 0.644
+    pitch: 1
+    soundName: SurfaceHit
+    loop: 0
     source: {fileID: 0}
   enemySounds:
   - clip: {fileID: 0}
     volume: 0
     pitch: 0
     soundName: 
+    loop: 0
     source: {fileID: 0}
   ambienceSounds:
   - clip: {fileID: 0}
     volume: 0
     pitch: 0
     soundName: 
+    loop: 0
+    source: {fileID: 0}
+  playerSounds:
+  - clip: {fileID: 8300000, guid: 31aa3780082fb6a46ab0e5537092d3ff, type: 3}
+    volume: 0.49
+    pitch: 1
+    soundName: DashWoosh
+    loop: 0
     source: {fileID: 0}
   miscSounds:
   - clip: {fileID: 0}
     volume: 0
     pitch: 0
     soundName: 
+    loop: 0
     source: {fileID: 0}
   source: {fileID: 6662039488842936416, guid: 9b0ffce50eaf4c2449efd442827515d1, type: 3}

@@ -17,9 +17,14 @@ public class PlayerAction : MonoBehaviour
 
     private void Update()
     {
-        if (Mouse.current.leftButton.isPressed && gunSelector.ActiveGun != null)
+        if (InputManager.instance.IsFire1 && gunSelector.ActiveGun != null)
         {
             gunSelector.ActiveGun.Shoot();
+
+            if (gunSelector.ActiveGun.type == GunType.Revolver && Time.timeScale > 0)
+            {
+                SoundFXManager.instance.PlaySFXClip("RevolverShoot", transform.position);
+            }
         }
     }
 }

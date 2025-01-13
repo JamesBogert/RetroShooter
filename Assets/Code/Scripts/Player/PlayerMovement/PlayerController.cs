@@ -58,7 +58,6 @@ public class PlayerController : MonoBehaviour
 
         if (ceilingTime > ceilingCheckCooldown)
             ceilingHit = Physics.Raycast(ceilingCheck.position, Vector3.up, ceilingCheckDistance, whatIsGround);
-            Debug.Log(ceilingHit);
 
         if (activeState == PlayerState.Standing)
         {
@@ -89,10 +88,12 @@ public class PlayerController : MonoBehaviour
         if (InputManager.instance.IsDash)
         {
             playerDash.CallDash();
+            playerMove.footSteps.enabled = false;
         }
         if (InputManager.instance.IsGrapple)
         { 
             grappleHook.AttemptGrapple();
+            playerMove.footSteps.enabled = false;
         }
 
         playerMove.Move();

@@ -22,6 +22,7 @@ public class PlayerDash : MonoBehaviour
         playerController.activeState = PlayerState.Dashing;
         StartCoroutine(Dash());
 
+        SoundFXManager.instance.PlaySFXClip("DashWoosh", transform.position);
     }
 
     private IEnumerator Dash()

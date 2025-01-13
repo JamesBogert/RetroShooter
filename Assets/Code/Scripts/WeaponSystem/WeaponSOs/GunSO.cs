@@ -45,7 +45,8 @@ public class GunSO : ScriptableObject
         {
             lastShootTime = Time.time;
             shootSystem.Play();
-            animator.Play(animatorFireName);
+
+            animator.Play(animatorFireName, -1, 0f);
 
             Vector3 spread = ShootConfig.GetSpread();
             Vector3 shootDirection = model.transform.parent.forward + spread;
@@ -91,6 +92,7 @@ public class GunSO : ScriptableObject
             {
                 damageable.TakeDamage(DamageConfig.GetDamage(distance));
                 damageable.Impact(hit.point, hit.normal);
+                SoundFXManager.instance.PlaySFXClip("SurfaceHit", hit.point);
             }
         }
 

@@ -11,6 +11,7 @@ public class SoundFXManager : ScriptableObject
     [ShowInInspector] public Sound[] gunSounds;
     [ShowInInspector] public Sound[] enemySounds;
     [ShowInInspector] public Sound[] ambienceSounds;
+    [ShowInInspector] public Sound[] playerSounds;
     [ShowInInspector] public Sound[] miscSounds;
     //list of arrays
     private List<Sound[]> sounds;
@@ -22,15 +23,16 @@ public class SoundFXManager : ScriptableObject
             instance = this;
     }
 
-    public void PlaySFXClip(string name, Transform spawnTransform)
+    public void PlaySFXClip(string name, Vector3 spawnPosition)
     {
         Sound sound = FindSound(name);
         if (sound == null) return;
 
-        AudioSource audioSource = Instantiate(source, spawnTransform.position, Quaternion.identity);
+        AudioSource audioSource = Instantiate(source, spawnPosition, Quaternion.identity);
         audioSource.clip = sound.clip;
         audioSource.volume = sound.volume;
         audioSource.pitch = sound.pitch + Random.Range(-pitchRange, pitchRange);
+        audioSource.loop = sound.loop;
         audioSource.Play();
 
         float length = audioSource.clip.length;
@@ -62,7 +64,14 @@ public class SoundFXManager : ScriptableObject
                     return snd;
            }
        }
-       foreach (Sound snd in miscSounds)
+        foreach (Sound snd in playerSounds)
+        {
+            if (name == snd.soundName)
+            {
+                return snd;
+            }
+        }
+        foreach (Sound snd in miscSounds)
        {
            if (name == snd.soundName)
            {
